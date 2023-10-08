@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "Flexiable",
+  title: "Flexibble",
   description: "ShowCase Modular Devleoper Site",
 };
 
