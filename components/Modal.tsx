@@ -37,6 +37,7 @@ const Modal = ({ children }: { children: ReactNode }) => {
           alt="close"
         />
       </button>
+      {/*create form*/}
       <div ref={wrapper} className="modal_wrapper">
         {children}
       </div>
