@@ -40,12 +40,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #b68eff;
   border-radius: 12px;
 }
 
 .modal-head-text {
-  @apply md:text-5xl text-3xl font-extrabold text-left max-w-5xl w-full;
+  @apply md:text-5xl text-3xl font-extrabold text-center max-w-5xl w-full;
 }
 
 .no-result-text {
@@ -125,7 +125,9 @@ body {
 }
 
 .modal_wrapper {
-  @apply flex justify-start items-center flex-col absolute h-[95%] w-full bottom-0 bg-white lg:px-40 px-8 pt-14 pb-72 overflow-auto rounded-t-3xl;
+  @apply flex justify-start items-center flex-col   h-[100%] w-full bottom-0 bg-white lg:px-40 px-8 pt-16 pb-72 overflow-auto {
+    /*rounded-t-3xl absolute*/
+  }
 }
 
 /* Navbar */
@@ -153,7 +155,7 @@ body {
 }
 
 .form_image-label {
-  @apply z-10 text-center w-full h-full p-20 text-gray-100 border-2 border-gray-50 border-dashed;
+  @apply z-10 text-center absolute w-full h-full p-20 text-gray-100 border-2 border-gray-50 border-dashed;
 }
 
 .form_image-input {

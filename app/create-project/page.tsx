@@ -1,7 +1,9 @@
-import Modal from "@/components/Modal";
-import Navbar from "@/components/Navbar";
+import CreateMenu from "@/components/CreateMenu";
+import CreateMenuNav from "@/components/CreateMenuNav";
+import FormField from "@/components/FormField";
 import ProjectForm from "@/components/ProjectForm";
 import { getCurrentUser } from "@/lib/session";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 const CreateProject = async () => {
@@ -11,10 +13,13 @@ const CreateProject = async () => {
   //if (!session?.user) redirect("/");
 
   return (
-    <Modal>
-      <h3 className="modal-head-text">Create a new Project</h3>
-      <ProjectForm type="create" session={session} />
-    </Modal>
+    <div>
+      <CreateMenuNav />
+      <CreateMenu>
+        <h3 className="modal-head-text">Create Project</h3>
+        <ProjectForm type="create" session={session} />
+      </CreateMenu>
+    </div>
   );
 };
 
