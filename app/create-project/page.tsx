@@ -14,7 +14,6 @@ const CreateProject = async () => {
 
   return (
     <div>
-      <CreateMenuNav />
       <CreateMenu>
         <h3 className="modal-head-text">Create Project</h3>
         <ProjectForm type="create" session={session} />
