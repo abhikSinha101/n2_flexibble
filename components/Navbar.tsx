@@ -24,11 +24,11 @@ const Navbar = async () => {
         </ul>
       </div>
 
-      <div className="flex-center gap-4">
+      <div className="flexCenter gap-4">
         {session?.user ? (
           <>
+            {/**maybe change the postion of these two */}
             <ProfileMenu session={session} />
-
             <Link href="/create-project">Share Work</Link>
           </>
         ) : (

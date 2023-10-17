@@ -9,8 +9,8 @@ import { redirect } from "next/navigation";
 const CreateProject = async () => {
   const session = await getCurrentUser();
 
-  //commented coz i didnt made a gmail acc for testing
-  //if (!session?.user) redirect("/");
+  //cheacking is user exists
+  if (!session?.user) redirect("/");
 
   return (
     <div>
