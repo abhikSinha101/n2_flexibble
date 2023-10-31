@@ -4,6 +4,8 @@ import { getCurrentUser } from "@/lib/session";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import RelatedProjects from "@/components/RelatedProjects";
+import ProjectActions from "@/components/ProjectActions";
 
 const Project = async ({ params: { id } }: { params: { id: string } }) => {
   const session = await getCurrentUser();
@@ -25,10 +27,10 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
     <>
       <Navbar />
 
-      <div className="flex flex-col w-full py-8 px-36 gap-4">
+      <div className="project_creator-page">
         {/**tite createdby image */}
 
-        <div className="flex flex-row w-full gap-4 mt-6 justify-between">
+        <div className="flexBetween w-full">
           <div className="flex flex-row gap-4 ">
             <Link href={renderLink()}>
               <Image
@@ -48,26 +50,55 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
             </div>
           </div>
 
-          <div className="flex items-center text-center text-2xl capitalize">
+          <div className="flex items-center text-2xl capitalize">
             {projectDetails?.title}
           </div>
+
+          {/**only for creator to see */}
+          {session?.user?.email === projectDetails?.createdBy?.email && (
+            <div className="flex justify-end items-center gap-2">
+              <ProjectActions projectId={projectDetails?.id} />
+            </div>
+          )}
         </div>
 
-        <div className="form_image-container text-center ">Image</div>
+        <div className="project_creator-image">
+          <Image
+            src={projectDetails?.image}
+            width={1250}
+            height={1250}
+            alt="profile"
+            className="w-[100%] rounded-xl"
+          />
+        </div>
 
-        <div className="w-full h-full text-center font-medium text-base  ">
-          <p>{projectDetails?.description}</p>
-          <div className="flex flex-row  place-content-center  gap-4 p-6 font-light ">
-            <Link href={gitLink} className="underline-offset-1">
-              Github
-            </Link>
-            <Link href={linkedInLink} className="underline-offset-1">
-              Linkedin
-            </Link>
+        <div className="project_creator-description ">
+          <div className="text-center py-2 pb-8">
+            <p>{projectDetails?.description}</p>
           </div>
-          <p>{projectDetails?.githubUrl}</p>
-          <p>{projectDetails?.liveSiteUrl}</p>
+
+          <div className="project_creator-links">
+            <div className="flex-grow border-t border-gray-100"></div>
+            <Link
+              href={gitLink}
+              className="underline underline-offset-2 text-gray-100"
+            >
+              <p>Github</p>
+            </Link>
+            <p className="text-gray-100">•</p>
+            <Link
+              href={linkedInLink}
+              className="underline underline-offset-2 text-gray-100"
+            >
+              <p>Linkedin</p>
+            </Link>
+            <div className="flex-grow border-t border-gray-100"></div>
+          </div>
         </div>
+        <RelatedProjects
+          userId={projectDetails?.createdBy?.id}
+          projectId={projectDetails?.id}
+        />
       </div>
     </>
   );

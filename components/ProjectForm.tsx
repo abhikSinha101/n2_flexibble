@@ -1,22 +1,27 @@
 "use client";
 
-import { SessionInterface } from "@/common.types";
+import { ProjectInterface, SessionInterface } from "@/common.types";
 import Image from "next/image";
 import { ChangeEvent, useState } from "react";
 import FormField from "./FormField";
 import CustomMenu from "./CustomMenu";
 import { categoryFilters } from "@/constants";
 import Button from "./Button";
-import { createNewProject, fetchToken } from "@/lib/actions";
+import { createNewProject, fetchToken, updateProject } from "@/lib/actions";
 import { useRouter } from "next/navigation";
 
 type Props = {
   type: string;
   session: SessionInterface;
+  project?: ProjectInterface;
 };
 
-const ProjectForm = ({ type, session }: Props) => {
+const ProjectForm = ({ type, session, project }: Props) => {
   const router = useRouter();
+  const cancelClick = () => {
+    router.push("/");
+  };
+
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -27,6 +32,10 @@ const ProjectForm = ({ type, session }: Props) => {
     try {
       if (type === "create") {
         await createNewProject(form, session?.user?.id, token);
+        router.push("/");
+      }
+      if (type === "edit") {
+        await updateProject(form, project?.id as string, token);
         router.push("/");
       }
     } catch (error) {
@@ -66,12 +75,12 @@ const ProjectForm = ({ type, session }: Props) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [form, setForm] = useState({
-    title: "",
-    description: "",
-    image: "",
-    liveSiteUrl: "",
-    githubUrl: "",
-    category: "",
+    title: project?.title || "",
+    description: project?.description || "",
+    image: project?.image || "",
+    liveSiteUrl: project?.liveSiteUrl || "",
+    githubUrl: project?.githubUrl || "",
+    category: project?.category || "",
   });
 
   return (
@@ -137,16 +146,16 @@ const ProjectForm = ({ type, session }: Props) => {
       />
 
       <div className="w-full flexBetween">
-        <Button
-          title={
-            isSubmitting
-              ? `${type === "create" ? "Creating" : "Editing"}`
-              : `${type === "create" ? "Cancel" : "Edit"}`
-          }
-          type="submit"
-          rightIcon={isSubmitting ? "" : "/trash.svg"}
-          isSubmitting={isSubmitting}
-        />
+        <button
+          title="Cancel"
+          type="button"
+          className=" flexBetween gap-2 delete-action_btn bg-primary-purple "
+          onClick={cancelClick}
+        >
+          <p className="text-slate-100">Cancel</p>
+          <Image src="/trash.svg" width={15} height={15} alt="edit" />
+        </button>
+
         <Button
           title={
             isSubmitting

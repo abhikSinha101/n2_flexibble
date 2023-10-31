@@ -6,6 +6,7 @@ import { useCallback } from "react";
 
 const CreateMenuNav = () => {
   const router = useRouter();
+
   const onDismiss = useCallback(() => {
     router.push("/");
   }, [router]);

@@ -166,3 +166,23 @@ body {
 .profile_projects {
   @apply grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 mt-5;
 }
+
+.project_creator-info {
+  @apply flex flex-row w-full gap-4 mt-6 justify-between;
+}
+
+.project_creator-page {
+  @apply flex flex-col w-full py-8 px-36 gap-4 items-center;
+}
+
+.project_creator-image {
+  @apply flex items-center place-content-center w-[100%] lg:min-h-[300px] pt-4;
+}
+
+.project_creator-description {
+  @apply w-full h-full text-center font-medium text-base pt-8;
+}
+
+.project_creator-links {
+  @apply flex flex-row  place-content-center items-center  gap-4 p-6 font-light;
+}
