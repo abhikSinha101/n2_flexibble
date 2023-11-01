@@ -34,7 +34,7 @@ const Home = async () => {
   return (
     <>
       <Navbar />
-      <section className="flex-start flex-col paddings mb-16">
+      <section className="flexStart flex-col paddings mb-16">
         <h1>Catogaries</h1>
 
         <section className="projects-grid">
@@ -50,8 +50,7 @@ const Home = async () => {
             />
           ))}
         </section>
-        {/**fix this */}
-        <h1>LoadMore</h1>
+        <h1>Load More</h1>
       </section>
       <Footer />
     </>

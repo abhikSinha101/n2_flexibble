@@ -175,10 +175,6 @@ body {
   @apply flex flex-col w-full py-8 px-36 gap-4 items-center;
 }
 
-.project_creator-image {
-  @apply flex items-center place-content-center w-[100%] lg:min-h-[300px] pt-4;
-}
-
 .project_creator-description {
   @apply w-full h-full text-center font-medium text-base pt-8;
 }

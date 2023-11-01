@@ -34,7 +34,7 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
           <div className="flex flex-row gap-4 ">
             <Link href={renderLink()}>
               <Image
-                src={projectDetails?.createdBy?.avatarUrl}
+                src={`${projectDetails?.createdBy?.avatarUrl}`}
                 width={50}
                 height={50}
                 alt="profile"
@@ -48,10 +48,12 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
               </div>
               <div className="text-sm">{projectDetails?.createdBy?.email}</div>
             </div>
-          </div>
 
-          <div className="flex items-center text-2xl capitalize">
-            {projectDetails?.title}
+            <div className="flex-grow border-l border-gray-50"></div>
+
+            <div className="flex items-center text-2xl normal-case subpixel-antialiased">
+              {projectDetails?.title}
+            </div>
           </div>
 
           {/**only for creator to see */}
@@ -62,15 +64,15 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
           )}
         </div>
 
-        <div className="project_creator-image">
+        <section className="mt-14">
           <Image
-            src={projectDetails?.image}
-            width={1250}
-            height={1250}
-            alt="profile"
-            className="w-[100%] rounded-xl"
+            src={`${projectDetails?.image}`}
+            className="object-cover rounded-2xl"
+            width={1064}
+            height={798}
+            alt="poster"
           />
-        </div>
+        </section>
 
         <div className="project_creator-description ">
           <div className="text-center py-2 pb-8">

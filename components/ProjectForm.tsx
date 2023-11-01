@@ -86,27 +86,22 @@ const ProjectForm = ({ type, session, project }: Props) => {
   return (
     <form onSubmit={handleFormSubmit} className="flexStart form">
       <div className="flexStart form_image-container">
-        <label
-          htmlFor="poster"
-          className="flexCenter
-          form_image-label"
-        >
-          {!form.image && "Choose a poster of your choice"}
+        <label htmlFor="poster" className="flexCenter form_image-label">
+          {!form.image && "Choose a poster for your project"}
         </label>
         <input
           id="image"
           type="file"
           accept="image/*"
-          required={type === "create"}
+          required={type === "create" ? true : false}
           className="form_image-input"
-          onChange={handleChangeImage}
+          onChange={(e) => handleChangeImage(e)}
         />
-
-        {!form.image && (
+        {form.image && (
           <Image
             src={form?.image}
             className="sm:p-10 object-contain z-20"
-            alt="Project poster"
+            alt="image"
             fill
           />
         )}
