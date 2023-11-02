@@ -3,6 +3,13 @@ import { fetchAllProjects } from "@/lib/actions";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import ProjectCard from "@/components/ProjectCard";
+import Categories from "@/components/Categories";
+
+type SearchParams = {
+  category?: string | null;
+};
+
+type Props = { searchParams: SearchParams };
 
 type ProjectSearch = {
   projectSearch: {
@@ -16,8 +23,8 @@ type ProjectSearch = {
   };
 };
 
-const Home = async () => {
-  const data = (await fetchAllProjects()) as ProjectSearch;
+const Home = async ({ searchParams: { category } }: Props) => {
+  const data = (await fetchAllProjects(category)) as ProjectSearch;
 
   const projectsToDisplay = data?.projectSearch?.edges || [];
 
@@ -34,9 +41,8 @@ const Home = async () => {
   return (
     <>
       <Navbar />
-      <section className="flexStart flex-col paddings mb-16">
-        <h1>Catogaries</h1>
-
+      <Categories />
+      <section className="flex-start flex-col paddings mb-16">
         <section className="projects-grid">
           {projectsToDisplay.map(({ node }: { node: ProjectInterface }) => (
             <ProjectCard

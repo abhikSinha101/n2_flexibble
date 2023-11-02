@@ -1,30 +1,3 @@
-export const getUserQuery = ` query GetUser($email:String!){
-    user(by: {email: $email}){
-        id
-        name
-        email
-        avatarUrl
-        description
-        githubUrl
-        linkedinUrl
-    }
-}`;
-
-export const createUserMutation = `
-    mutation CreateUser($input:UserCreateInput!){
-        userCreate(input:$input){
-            user{
-                name
-                email
-                avatarUrl
-                description
-                githubUrl
-                linkedinUrl
-                id
-            }
-        }
-    }
-`;
 export const createProjectMutation = `
 	mutation CreateProject($input: ProjectCreateInput!) {
 		projectCreate(input: $input) {
@@ -65,9 +38,25 @@ export const deleteProjectMutation = `
   }
 `;
 
+export const createUserMutation = `
+	mutation CreateUser($input: UserCreateInput!) {
+		userCreate(input: $input) {
+			user {
+				name
+				email
+				avatarUrl
+				description
+				githubUrl
+				linkedinUrl
+				id
+			}
+		}
+	}
+`;
+
 export const projectsQuery = `
-  query getProjects($category: String, $endCursor: String) {
-    projectSearch(first: 8, after: $endCursor, filter: {category: {eq: $category}}) {
+  query getProjects($category: String, $endcursor: String) {
+    projectSearch(first: 8, after: $endcursor, filter: {category: {eq: $category}}) {
       pageInfo {
         hasNextPage
         hasPreviousPage
@@ -111,6 +100,20 @@ export const getProjectByIdQuery = `
         email
         avatarUrl
       }
+    }
+  }
+`;
+
+export const getUserQuery = `
+  query GetUser($email: String!) {
+    user(by: { email: $email }) {
+      id
+      name
+      email
+      avatarUrl
+      description
+      githubUrl
+      linkedinUrl
     }
   }
 `;
