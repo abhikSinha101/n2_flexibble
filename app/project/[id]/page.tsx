@@ -98,8 +98,8 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
           </div>
         </div>
         <RelatedProjects
-          userId={projectDetails?.createdBy?.id}
-          projectId={projectDetails?.id}
+          userId={projectDetails?.createdBy?.id || ""}
+          projectId={projectDetails?.id || ""}
         />
       </div>
     </>
