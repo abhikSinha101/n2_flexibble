@@ -15,7 +15,7 @@ const Categories = () => {
   };
 
   return (
-    <div className="flexBetween w-full gap-5 flex-wrap">
+    <div className="flexBetween w-full gap-5 flex-wrap px-4">
       <ul className="flex gap-2 overflow-auto">
         {categoryFilters.map((filter) => (
           <button
